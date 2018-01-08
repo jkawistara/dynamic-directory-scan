@@ -13,8 +13,10 @@ use modules\ScanDirectory;
  */
 function traceData($db, $directory)
 {
-    $iDs = collectData($db, $directory);
     $count = new CountFile($db);
+    $count->getQuery()->truncateTable();
+    $iDs = collectData($db, $directory);
+
     if (!empty($iDs)) {
         $count->status = true;
         $count->files = $iDs;
